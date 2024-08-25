@@ -1,9 +1,10 @@
 ﻿namespace Demo
 {
-    #region Generics[SwapExapmle]
+    #region Generics[SwapExapmle &Search Example]
     class Helper
     {
         #region NonGenerics
+        #region SwapExapmle
         //public static void Swap(ref int X, ref int Y)
         //{
         //    int Temp = X;
@@ -22,6 +23,23 @@
         //    X = Y;
         //    Y = Temp;
         //} 
+        #endregion
+        #region [Search Example]
+        public static int SearchArray(int[] array , int value)
+        {
+            if(array is not null)
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (value == array[i])
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+        #endregion
         #endregion
         #region MyGenerics
         public static void Swap<T>(ref T X, ref T Y)
@@ -53,6 +71,8 @@
     }
 
     #endregion
+
+
     internal class Program
     {
         static void Main(string[] args)
@@ -95,6 +115,10 @@
             Helper.Swap(ref P1, ref P2);
             Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING");
             #endregion
+            #endregion
+            #region Generics[Search Example]
+            Console.WriteLine("*****************search example****************");
+            Console.WriteLine(Helper.SearchArray([1, 2, 3, 4, 5, 7], 3));  
             #endregion
         }
     }
