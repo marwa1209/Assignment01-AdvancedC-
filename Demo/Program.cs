@@ -60,6 +60,7 @@
             #region Generics[swap example]
             #region NonGenerics
             //int A = 10;
+
             //int B = 20;
             //Console.WriteLine($"A={A} ,B ={B}");
             //Helper.Swap(ref A,ref B);
