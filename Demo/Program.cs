@@ -1,7 +1,7 @@
 ﻿namespace Demo
 {
     #region Generics[SwapExapmle &Search Example]
-    class Helper
+    class Helper<T>
     {
         #region NonGenerics
         #region SwapExapmle
@@ -25,29 +25,62 @@
         //} 
         #endregion
         #region [Search Example]
-        public static int SearchArray(int[] array , int value)
-        {
-            if(array is not null)
-            {
-                for (int i = 0; i < array.Length; i++)
-                {
-                    if (value == array[i])
-                    {
-                        return i;
-                    }
-                }
-            }
-            return -1;
-        }
+        //public static int SearchArray(int[] array , int value)
+        //{
+        //    if(array is not null)
+        //    {
+        //        for (int i = 0; i < array.Length; i++)
+        //        {
+        //            if (value == array[i])
+        //            {
+        //                return i;
+        //            }
+        //        }
+        //    }
+        //    return -1;
+        //}
+        //public static int SearchArray(string[] array, string value)
+        //{
+        //    if (array is not null)
+        //    {
+        //        for (int i = 0; i < array.Length; i++)
+        //        {
+        //            if (value == array[i])
+        //            {
+        //                return i;
+        //            }
+        //        }
+        //    }
+        //    return -1;
+        //}
         #endregion
         #endregion
         #region MyGenerics
+        #region SwapExample
         public static void Swap<T>(ref T X, ref T Y)
         {
             T Temp = X;
             X = Y;
             Y = Temp;
         }
+        #endregion
+
+        #region SearchExanple
+        public static int SearchArray(T[] array, T value)
+        {
+            if (array is not null)
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (value.Equals( array[i]))
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        } 
+        #endregion
         #endregion
 
     }
@@ -101,24 +134,33 @@
             int A = 10;
             int B = 20;
             Console.WriteLine($"A={A} ,B ={B}");
-            Helper.Swap(ref A, ref B);
+            Helper<int>.Swap(ref A, ref B);
             Console.WriteLine($"A={A},b={B} AFTER SWAPPING");
             Console.WriteLine("****************double********");
             double A0D = 10.50;
             double B0D = 22.56;
             Console.WriteLine($"A={A0D} ,B ={B0D}");
-            Helper.Swap(ref A0D, ref B0D);
+            Helper<double>.Swap(ref A0D, ref B0D);
             Console.WriteLine($"A={A0D},b={B0D} AFTER SWAPPING");
             Console.WriteLine("************point*******************");
             Point P1 = new Point(1, 2);
             Point P2 = new Point(11, 12);
-            Helper.Swap(ref P1, ref P2);
+            Helper<Point>.Swap(ref P1, ref P2);
             Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING");
             #endregion
             #endregion
+
             #region Generics[Search Example]
             Console.WriteLine("*****************search example****************");
-            Console.WriteLine(Helper.SearchArray([1, 2, 3, 4, 5, 7], 3));  
+            Console.WriteLine(Helper<int>.SearchArray([1, 2, 3, 4, 5, 7], 3));
+            Console.WriteLine(Helper<string>.SearchArray(["1", "2", "3", "4", "5", "7"], "3"));
+            Point point = new Point(1, 2);
+            Point point2 = new Point(11,12);
+            Point point3 = new Point(12,13);
+            Point point4 = new Point(13,14);
+            Point point5 = new Point(14,15);
+            Console.WriteLine(Helper<Point>.SearchArray([point, point2, point3, point4, point5], point2));
+
             #endregion
         }
     }
