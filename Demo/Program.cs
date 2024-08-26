@@ -72,14 +72,14 @@
             {
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (value.Equals( array[i]))
+                    if (value.Equals(array[i]))
                     {
                         return i;
                     }
                 }
             }
             return -1;
-        } 
+        }
         #endregion
         #endregion
 
@@ -105,7 +105,22 @@
 
     #endregion
 
-
+    class Employe
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
+        public override bool Equals(object? obj)
+        {
+            Employe employe = obj as Employe;
+            return (this.Id==employe.Id)&&(this.Name==employe.Name)&&(this.Salary==employe.Salary);
+        }
+        public override int GetHashCode()
+        {
+            //return this.Id.GetHashCode() + this.Name.GetHashCode()+this.Salary.GetHashCode();
+            return HashCode.Combine(this.Id.GetHashCode(), this.Name.GetHashCode(),this.Salary.GetHashCode());
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -155,13 +170,28 @@
             Console.WriteLine(Helper<int>.SearchArray([1, 2, 3, 4, 5, 7], 3));
             Console.WriteLine(Helper<string>.SearchArray(["1", "2", "3", "4", "5", "7"], "3"));
             Point point = new Point(1, 2);
-            Point point2 = new Point(11,12);
-            Point point3 = new Point(12,13);
-            Point point4 = new Point(13,14);
-            Point point5 = new Point(14,15);
+            Point point2 = new Point(11, 12);
+            Point point3 = new Point(12, 13);
+            Point point4 = new Point(13, 14);
+            Point point5 = new Point(14, 15);
             Console.WriteLine(Helper<Point>.SearchArray([point, point2, point3, point4, point5], point2));
 
             #endregion
+
+            //compared refrences not object's Value
+            Employe employe = new Employe()
+            {
+                Id = 15,
+                Name = "Te555st",
+                Salary = 300550
+            }; 
+            Employe employe2 = new Employe()
+            {
+                Id = 15,
+                Name = "Te555st",  
+                Salary=300550
+            };
+            Console.WriteLine(employe.Equals(employe2));
         }
     }
 }
