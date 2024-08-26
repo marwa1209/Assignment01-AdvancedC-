@@ -105,6 +105,7 @@
 
     #endregion
 
+    #region equals&getHashCode
     class Employe
     {
         public int Id { get; set; }
@@ -113,85 +114,145 @@
         public override bool Equals(object? obj)
         {
             Employe employe = obj as Employe;
-            return (this.Id==employe.Id)&&(this.Name==employe.Name)&&(this.Salary==employe.Salary);
+            return (this.Id == employe.Id) && (this.Name == employe.Name) && (this.Salary == employe.Salary);
         }
         public override int GetHashCode()
         {
             //return this.Id.GetHashCode() + this.Name.GetHashCode()+this.Salary.GetHashCode();
-            return HashCode.Combine(this.Id.GetHashCode(), this.Name.GetHashCode(),this.Salary.GetHashCode());
+            return HashCode.Combine(this.Id.GetHashCode(), this.Name.GetHashCode(), this.Salary.GetHashCode());
         }
     }
-    internal class Program
+    #endregion
+
+    #region Bubble sort
+    class Helper2<T> where T : IComparable<T>
     {
-        static void Main(string[] args)
+        #region NonGenarics
+        //public static void BubbleSort(int[] arr)
+        //{
+        //    if (arr is not null)
+        //    {
+        //        for (int i = 0; i < arr.Length; i++)
+        //        {
+        //            for (int j = 0; j < arr.Length - i - 1; j++)
+        //            {
+        //                if (arr[j] > arr[j + 1])
+        //                {
+        //                    Helper<int>.Swap(ref arr[j], ref arr[j + 1]);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        #endregion    
+        #region Genarics
+        public static void BubbleSort(T[] arr)
         {
-            #region Generics[swap example]
-            #region NonGenerics
-            //int A = 10;
-
-            //int B = 20;
-            //Console.WriteLine($"A={A} ,B ={B}");
-            //Helper.Swap(ref A,ref B);
-            //Console.WriteLine($"A={A},b={B} AFTER SWAPPING");     
-            //Console.WriteLine("****************double********");
-            //double A0D = 10.50;
-            //double B0D = 22.56;
-            //Console.WriteLine($"A={A0D} ,B ={B0D}");
-            //Helper.Swap(ref A0D, ref B0D);
-            //Console.WriteLine($"A={A0D},b={B0D} AFTER SWAPPING");
-            //Console.WriteLine("************point*******************");
-            //Point P1 = new Point(1, 2);
-            //Point P2 = new Point(11, 12);
-            //Helper.Swap(ref P1, ref P2);
-            //Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING"); 
-            #endregion
-            #region Generics
-            int A = 10;
-            int B = 20;
-            Console.WriteLine($"A={A} ,B ={B}");
-            Helper<int>.Swap(ref A, ref B);
-            Console.WriteLine($"A={A},b={B} AFTER SWAPPING");
-            Console.WriteLine("****************double********");
-            double A0D = 10.50;
-            double B0D = 22.56;
-            Console.WriteLine($"A={A0D} ,B ={B0D}");
-            Helper<double>.Swap(ref A0D, ref B0D);
-            Console.WriteLine($"A={A0D},b={B0D} AFTER SWAPPING");
-            Console.WriteLine("************point*******************");
-            Point P1 = new Point(1, 2);
-            Point P2 = new Point(11, 12);
-            Helper<Point>.Swap(ref P1, ref P2);
-            Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING");
-            #endregion
-            #endregion
-
-            #region Generics[Search Example]
-            Console.WriteLine("*****************search example****************");
-            Console.WriteLine(Helper<int>.SearchArray([1, 2, 3, 4, 5, 7], 3));
-            Console.WriteLine(Helper<string>.SearchArray(["1", "2", "3", "4", "5", "7"], "3"));
-            Point point = new Point(1, 2);
-            Point point2 = new Point(11, 12);
-            Point point3 = new Point(12, 13);
-            Point point4 = new Point(13, 14);
-            Point point5 = new Point(14, 15);
-            Console.WriteLine(Helper<Point>.SearchArray([point, point2, point3, point4, point5], point2));
-
-            #endregion
-
-            //compared refrences not object's Value
-            Employe employe = new Employe()
+            if (arr is not null)
             {
-                Id = 15,
-                Name = "Te555st",
-                Salary = 300550
-            }; 
-            Employe employe2 = new Employe()
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    for (int j = 0; j < arr.Length - i - 1; j++)
+                    {
+                        if (arr[j].CompareTo(arr[j + 1]) == 1)
+                        {
+                            Helper<int>.Swap(ref arr[j], ref arr[j + 1]);
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+    }
+        internal class Program
+        {
+            static void Main(string[] args)
             {
-                Id = 15,
-                Name = "Te555st",  
-                Salary=300550
-            };
-            Console.WriteLine(employe.Equals(employe2));
+                #region Generics[swap example]
+                #region NonGenerics
+                //int A = 10;
+
+                //int B = 20;
+                //Console.WriteLine($"A={A} ,B ={B}");
+                //Helper.Swap(ref A,ref B);
+                //Console.WriteLine($"A={A},b={B} AFTER SWAPPING");     
+                //Console.WriteLine("****************double********");
+                //double A0D = 10.50;
+                //double B0D = 22.56;
+                //Console.WriteLine($"A={A0D} ,B ={B0D}");
+                //Helper.Swap(ref A0D, ref B0D);
+                //Console.WriteLine($"A={A0D},b={B0D} AFTER SWAPPING");
+                //Console.WriteLine("************point*******************");
+                //Point P1 = new Point(1, 2);
+                //Point P2 = new Point(11, 12);
+                //Helper.Swap(ref P1, ref P2);
+                //Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING"); 
+                #endregion
+                #region Generics
+                int A = 10;
+                int B = 20;
+                Console.WriteLine($"A={A} ,B ={B}");
+                Helper<int>.Swap(ref A, ref B);
+                Console.WriteLine($"A={A},b={B} AFTER SWAPPING");
+                Console.WriteLine("****************double********");
+                double A0D = 10.50;
+                double B0D = 22.56;
+                Console.WriteLine($"A={A0D} ,B ={B0D}");
+                Helper<double>.Swap(ref A0D, ref B0D);
+                Console.WriteLine($"A={A0D},b={B0D} AFTER SWAPPING");
+                Console.WriteLine("************point*******************");
+                Point P1 = new Point(1, 2);
+                Point P2 = new Point(11, 12);
+                Helper<Point>.Swap(ref P1, ref P2);
+                Console.WriteLine($"P1={P1},P2={P2} AFTER SWAPPING");
+                #endregion
+                #endregion
+
+                #region Generics[Search Example]
+                Console.WriteLine("*****************search example****************");
+                Console.WriteLine(Helper<int>.SearchArray([1, 2, 3, 4, 5, 7], 3));
+                Console.WriteLine(Helper<string>.SearchArray(["1", "2", "3", "4", "5", "7"], "3"));
+                Point point = new Point(1, 2);
+                Point point2 = new Point(11, 12);
+                Point point3 = new Point(12, 13);
+                Point point4 = new Point(13, 14);
+                Point point5 = new Point(14, 15);
+                Console.WriteLine(Helper<Point>.SearchArray([point, point2, point3, point4, point5], point2));
+
+                #endregion
+
+                #region Equals&GETHashCode
+                //compared refrences not object's Value
+                Employe employe = new Employe()
+                {
+                    Id = 15,
+                    Name = "Te555st",
+                    Salary = 300550
+                };
+                Employe employe2 = new Employe()
+                {
+                    Id = 15,
+                    Name = "Te555st",
+                    Salary = 300550
+                };
+                Console.WriteLine(employe.Equals(employe2));
+                #endregion
+
+
+                #region Bubble sort
+                int[] Numbers = { 10, 20, 6, 8, 9, 3, 4, 5, 67, 8, 7, 1000, 11, 12, 130 };
+                foreach (int number in Numbers)
+                {
+                    Console.WriteLine(number);
+                }
+                Helper2.BubbleSort(Numbers);
+                foreach (int number in Numbers)
+                {
+                    Console.WriteLine(number);
+                }
+                #endregion
+            }
         }
     }
-}
