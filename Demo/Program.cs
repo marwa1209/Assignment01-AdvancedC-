@@ -242,16 +242,16 @@
 
 
                 #region Bubble sort
-                int[] Numbers = { 10, 20, 6, 8, 9, 3, 4, 5, 67, 8, 7, 1000, 11, 12, 130 };
-                foreach (int number in Numbers)
-                {
-                    Console.WriteLine(number);
-                }
-                Helper2.BubbleSort(Numbers);
-                foreach (int number in Numbers)
-                {
-                    Console.WriteLine(number);
-                }
+                //int[] Numbers = { 10, 20, 6, 8, 9, 3, 4, 5, 67, 8, 7, 1000, 11, 12, 130 };
+                //foreach (int number in Numbers)
+                //{
+                //    Console.WriteLine(number);
+                //}
+                //Helper2.BubbleSort(Numbers);
+                //foreach (int number in Numbers)
+                //{
+                //    Console.WriteLine(number);
+                //}
                 #endregion
             }
         }
